@@ -93,14 +93,14 @@ describe HstoreAccessor do
       product.popular = true
       product.save
       product.reload
-      expect(product.popular?).to be_true
+      expect(product.popular?).to eq(true)
     end
 
     it "return the state for false boolean fields" do
       product.popular = false
       product.save
       product.reload
-      expect(product.popular?).to be_false
+      expect(product.popular?).to eq(false)
     end
 
   end
@@ -169,7 +169,7 @@ describe HstoreAccessor do
 
     end
 
-    context "for array fields support" do
+    context "for array fgields support" do
 
       it "equality" do
         expect(Product.tags_eq(["tag1", "tag2", "tag3"]).to_a).to eq [product_a]
@@ -308,14 +308,14 @@ describe HstoreAccessor do
         product.popular = 'true'
         product.save
         product.reload
-        expect(product.popular).to be_true
+        expect(product.popular).to eq(true)
       end
 
       it "when a real boolean is passed" do
         product.popular = true
         product.save
         product.reload
-        expect(product.popular).to be_true
+        expect(product.popular).to eq(true)
       end
 
     end
@@ -348,11 +348,11 @@ describe HstoreAccessor do
       it "type casts boolean values" do
         ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.each do |value|
           product.popular = value
-          expect(product.popular).to be_true
+          expect(product.popular).to eq(true)
         end
         ActiveRecord::ConnectionAdapters::Column::FALSE_VALUES.each do |value|
           product.popular = value
-          expect(product.popular).to be_false
+          expect(product.popular).to eq(false)
         end
       end
 

@@ -1,10 +1,11 @@
 require "hstore_accessor"
 require "database_cleaner"
+require 'pry-remote'
 
 ActiveRecord::Base.establish_connection(
   adapter: "postgresql",
   database: "hstore_accessor",
-  username: "root"
+  username: "postgres"
 )
 
 ActiveRecord::Base.connection.execute("CREATE EXTENSION hstore;") rescue ActiveRecord::StatementInvalid

@@ -46,14 +46,13 @@ module HstoreAccessor
 
   def type_cast(type, value)
     return nil if value.nil?
-    column_class = ActiveRecord::ConnectionAdapters::Column
     case type
     when :string,:hash,:array  then value
-    when :integer              then column_class.value_to_integer(value)
+    when :integer              then ActiveRecord::Type::Integer.new.type_cast_from_user(value)
     when :float                then value.to_f
-    when :time                 then string_to_time(value)
-    when :date                 then column_class.value_to_date(value)
-    when :boolean              then column_class.value_to_boolean(value)
+    when :time                 then ActiveRecord::Type::DateTime.new.type_cast_from_user(value)
+    when :date                 then ActiveRecord::Type::Date.new.type_cast_from_user(value)
+    when :boolean              then ActiveRecord::Type::Boolean.new.type_cast_from_user(value)
     else value
     end
   end
