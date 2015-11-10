@@ -74,8 +74,8 @@ module HstoreAccessor
         end
 
         define_method("#{key}=") do |value|
-          send("#{hstore_attribute}=", (send(hstore_attribute) || {}).merge(store_key.to_s => serialize(data_type, type_cast(type, value))))
           send("#{hstore_attribute}_will_change!")
+          send("#{hstore_attribute}=", (send(hstore_attribute) || {}).merge(store_key.to_s => serialize(data_type, type_cast(type, value))))
         end
 
         define_method(key) do
