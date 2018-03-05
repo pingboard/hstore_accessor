@@ -49,7 +49,7 @@ module HstoreAccessor
         case @rails.major
         # Rails 5
         when 5
-          ActiveRecord::Type::Date.new.type_cast_from_user(value)
+          ActiveRecord::Type::Date.new.cast(value)
         # Rails 4
         when 4
           # Rails < 4.2
@@ -69,7 +69,7 @@ module HstoreAccessor
         case @rails.major
         # Rails 5
         when 5
-          ActiveRecord::Type::DateTime.new.type_cast_from_user(value)
+          ActiveRecord::Type::DateTime.new.cast(value)
         # Rails 4
         when 4
           # Rails < 4.2
@@ -113,7 +113,7 @@ module HstoreAccessor
         case @rails.major
         # Rails 5
         when 5
-          ActiveRecord::Type::Integer.new.type_cast_from_user(value)
+          ActiveRecord::Type::Integer.new.cast(value)
         # Rails 4
         when 4
           # Rails < 4.2
